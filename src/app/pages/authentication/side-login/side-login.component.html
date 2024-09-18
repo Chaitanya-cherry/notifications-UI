@@ -1,0 +1,64 @@
+<div
+  class="blank-layout-container justify-content-center align-items-center bg-light"
+  style="background-image: url('./assets/images/backgrounds/login-bg.jpg'); background-size: cover; background-position: center; height: 100vh;"
+>
+  <div
+    class="position-relative row w-100 h-100 bg-gradient justify-content-center"
+  >
+    <div class="col-lg-4 d-flex align-items-center">
+      <mat-card class="cardWithShadow boxed-auth">
+        <mat-card-content class="p-32">
+          <div class="text-center">
+            <a [routerLink]="['/dashboard']">
+              <img
+                src="./assets/images/logos/logo-light-casa.svg"
+                class="align-middle m-2"
+                alt="logo"
+              />
+            </a>
+          </div>
+
+          <form class="m-t-30">
+            <!-- Select Location Dropdown -->
+            <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block"
+              >Select Location</mat-label
+            >
+            <mat-form-field appearance="outline" class="w-100" color="primary">
+              <mat-select placeholder="Choose Location">
+                <mat-option value="hyderabad">Hyderabad</mat-option>
+                <mat-option value="vijayawada">Vijayawada</mat-option>
+                <mat-option value="bheemavaram">Bheemavaram</mat-option>
+                <mat-option value="kranti">Kranti</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <!-- Username / Email ID -->
+            <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">
+              Username / Email ID
+            </mat-label>
+            <mat-form-field appearance="outline" class="w-100" color="primary">
+              <input matInput />
+            </mat-form-field>
+
+            <!-- Password / OTP -->
+            <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">
+              Password / OTP
+            </mat-label>
+            <mat-form-field appearance="outline" class="w-100" color="primary">
+              <input matInput type="password" />
+            </mat-form-field>
+
+            <div class="d-flex align-items-center m-b-12">
+              <mat-checkbox color="primary">Remember this Device</mat-checkbox>
+            </div>
+
+            <a [routerLink]="['/']" mat-flat-button color="primary" class="w-100">
+              Log In
+            </a>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
