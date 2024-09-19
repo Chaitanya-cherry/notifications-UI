@@ -1,145 +1,83 @@
-import { Component, ViewChild } from '@angular/core';
-import { MaterialModule } from '../../material.module';
-import { TablerIconsModule } from 'angular-tabler-icons';
-import {
-  ApexChart,
-  ChartComponent,
-  ApexDataLabels,
-  ApexLegend,
-  ApexStroke,
-  ApexTooltip,
-  ApexAxisChartSeries,
-  ApexPlotOptions,
-  NgApexchartsModule,
-  ApexFill,
-} from 'ng-apexcharts';
-
-export interface revenueForecastChart {
-  series: ApexAxisChartSeries;
-  chart: ApexChart;
-  dataLabels: ApexDataLabels;
-  plotOptions: ApexPlotOptions;
-  tooltip: ApexTooltip;
-  stroke: ApexStroke;
-  legend: ApexLegend;
-  fill: ApexFill;
-}
+import { Component, ViewChild } from '@angular/core'; // Add ViewChild import
+import { CommonModule } from '@angular/common';  // Required for common Angular functionalities
+import { FormsModule } from '@angular/forms';    // Required for ngModel
+import { MatCardModule } from '@angular/material/card';    // MatCard for card layout
+import { MatFormFieldModule } from '@angular/material/form-field';    // MatFormField for form fields
+import { MatSelectModule } from '@angular/material/select';    // MatSelect for dropdowns
+import { MatOptionModule } from '@angular/material/core';    // MatOption for select options
+import { MatInputModule } from '@angular/material/input';    // MatInput for input fields
+import { MatDatepickerModule, MatDatepickerInputEvent } from '@angular/material/datepicker'; // Import MatDatepickerInputEvent
+import { MatNativeDateModule } from '@angular/material/core';    // Native date picker support
 
 interface month {
   value: string;
   viewValue: string;
 }
 
+interface DayBalance {
+  hyderabad: number;
+  vijayawada: number;
+  bheemavaram: number;
+  kranti: number;
+}
+
 @Component({
   selector: 'app-revenue-forecast',
   standalone: true,
-  imports: [MaterialModule, TablerIconsModule, NgApexchartsModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatCardModule,           // Import the necessary Material modules
+    MatFormFieldModule,
+    MatSelectModule,
+    MatOptionModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+  ],
   templateUrl: './revenue-forecast.component.html',
 })
 export class AppRevenueForecastComponent {
-  @ViewChild('chart') chart: ChartComponent = Object.create(null);
-  public revenueForecastChart!: Partial<revenueForecastChart> | any;
-
+  @ViewChild('chart') chart: any;
+  
   months: month[] = [
     { value: 'mar', viewValue: 'Sep 2024' },
     { value: 'apr', viewValue: 'Oct 2024' },
     { value: 'june', viewValue: 'Nov 2024' },
   ];
 
-  constructor() {
-    this.revenueForecastChart = {
-      series: [
-        {
-          name: '2024',
-          data: [1.2, 2.7, 1, 3.6, 2.1, 2.7, 2.2, 1.3, 2.5],
-        },
-        {
-          name: '2023',
-          data: [-2.8, -1.1, -2.5, -1.5, -2.3, -1.9, -1, -2.1, -1.3],
-        },
-      ],
+  selectedDate: Date | null = null;
 
-      chart: {
-        type: 'bar',
-        fontFamily: 'inherit',
-        foreColor: '#adb0bb',
-        height: 295,
-        stacked: true,
-        offsetX: -15,
-        toolbar: {
-          show: false,
-        },
-      },
-      colors: ['rgba(99, 91, 255, 1)', 'rgba(255, 102, 146,1)'],
-      plotOptions: {
-        bar: {
-          horizontal: false,
-          barHeight: '60%',
-          columnWidth: '15%',
-          borderRadius: [6],
-          borderRadiusApplication: 'end',
-          borderRadiusWhenStacked: 'all',
-        },
-      },
-      dataLabels: {
-        enabled: false,
-      },
-      legend: {
-        show: false,
-      },
-      grid: {
-        show: true,
-        padding: {
-          top: 0,
-          bottom: 0,
-          right: 0,
-        },
-        borderColor: 'rgba(0,0,0,0.05)',
-        xaxis: {
-          lines: {
-            show: true,
-          },
-        },
-        yaxis: {
-          lines: {
-            show: true,
-          },
-        },
-      },
+  // Initial day balance data for different locations
+  dayBalance: DayBalance = {
+    hyderabad: 0,
+    vijayawada: 0,
+    bheemavaram: 0,
+    kranti: 0,
+  };
 
-      yaxis: {
-        min: -5,
-        max: 5,
-        tickAmount: 4,
-      },
-      xaxis: {
-        axisBorder: {
-          show: false,
-        },
-        axisTicks: {
-          show: false,
-        },
-        categories: [
-          'Jan',
-          'Feb',
-          'Mar',
-          'Apr',
-          'May',
-          'Jun',
-          'July',
-          'Aug',
-          'Sep',
-        ],
-        labels: {
-          style: { fontSize: '13px', colors: '#adb0bb', fontWeight: '400' },
-        },
-      },
-      tooltip: {
-        theme: 'dark',
-        x: {
-          show: false,
-        },
-      },
+  constructor() {}
+
+  // Function to handle date change and update day balances
+  onDateChange(event: MatDatepickerInputEvent<Date>) {  // Use MatDatepickerInputEvent for the date change event
+    const selectedDay = event.value;
+
+    if (selectedDay) {
+      // Simulate fetching the day balance for the selected day (hardcoded for demonstration)
+      this.dayBalance = this.getDayBalance(selectedDay);
+    }
+  }
+
+  // Function to get day balance based on selected date (you can replace this with actual logic)
+  getDayBalance(date: Date): DayBalance {
+    // Example logic to return different values based on date (this can be replaced with an API call)
+    const dayOfMonth = date.getDate();
+
+    return {
+      hyderabad: dayOfMonth * 1000, // Example logic
+      vijayawada: dayOfMonth * 800,
+      bheemavaram: dayOfMonth * 600,
+      kranti: dayOfMonth * 500,
     };
   }
 }

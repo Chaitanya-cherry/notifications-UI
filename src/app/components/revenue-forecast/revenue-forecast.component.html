@@ -1,39 +1,63 @@
 <mat-card class="cardWithShadow">
-    <mat-card-content>
-      <div class="hstack align-items-center flex-column flex-lg-row">
-        <div class="w-100">
-          <mat-card-title>Revenue Forecast</mat-card-title>
+  <mat-card-content>
+    <div class="hstack align-items-center flex-column flex-lg-row">
+      <div class="w-100">
+        <mat-card-title>Revenue Forecast</mat-card-title>
+      </div>
+      <div class="m-l-auto">
+        <mat-form-field class="theme-select" appearance="outline">
+          <mat-select value="mar">
+            <mat-option *ngFor="let month of months" [value]="month.value">
+              {{ month.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <!-- Display panel with location day balances -->
+    <div class="m-t-16 display-panel">
+      <div class="location-balance">
+        <div class="location">
+          <strong>Hyderabad:</strong>
         </div>
-        <div class="m-l-auto">
-            <mat-form-field class="theme-select" appearance="outline">
-                <mat-select value="mar">
-                  @for(month of months; track month.viewValue ) {
-                  <mat-option [value]="month.value">
-                    {{ month.viewValue }}
-                  </mat-option>
-                  }
-                </mat-select>
-              </mat-form-field>
+        <div class="balance">
+          {{ dayBalance.hyderabad | currency }}
         </div>
       </div>
-  
-      <!-- chart -->
-      <div class="m-t-16" style="height: 295px">
-        <apx-chart
-          [series]="revenueForecastChart.series"
-          [chart]="revenueForecastChart.chart"
-          [colors]="revenueForecastChart.colors"
-          [plotOptions]="revenueForecastChart.plotOptions"
-          [dataLabels]="revenueForecastChart.dataLabels"
-          [legend]="revenueForecastChart.legend"
-          [grid]="revenueForecastChart.grid"
-          [yaxis]="revenueForecastChart.yaxis"
-          [xaxis]="revenueForecastChart.xaxis"
-          [tooltip]="revenueForecastChart.tooltip"
-        ></apx-chart>
+      <div class="location-balance">
+        <div class="location">
+          <strong>Vijayawada:</strong>
+        </div>
+        <div class="balance">
+          {{ dayBalance.vijayawada | currency }}
+        </div>
       </div>
-  
-     
-    </mat-card-content>
-  </mat-card>
-  
+      <div class="location-balance">
+        <div class="location">
+          <strong>Bheemavaram:</strong>
+        </div>
+        <div class="balance">
+          {{ dayBalance.bheemavaram | currency }}
+        </div>
+      </div>
+      <div class="location-balance">
+        <div class="location">
+          <strong>Kranti:</strong>
+        </div>
+        <div class="balance">
+          {{ dayBalance.kranti | currency }}
+        </div>
+      </div>
+
+      <!-- Calendar button to select the day -->
+      <div class="calendar-button m-t-16">
+        <mat-form-field appearance="outline">
+          <input matInput [matDatepicker]="picker" placeholder="Select Day" [(ngModel)]="selectedDate" (dateChange)="onDateChange($event)">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
