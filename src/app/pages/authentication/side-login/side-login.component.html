@@ -1,6 +1,6 @@
 <div
-  class="blank-layout-container justify-content-center align-items-center bg-light"
-  style="background-image: url('./assets/images/backgrounds/login-bg4.jpg'); background-size: cover; background-position: center; height: 100vh; display: flex; justify-content: center; align-items: center;"
+  class="blank-layout-container justify-content-center align-items-center"
+  style="background-image: url('./assets/images/backgrounds/login-bg2.jpg'); background-size: cover; background-position: center; min-height: 100vh; height: 100%; width: 100%;"
 >
   <div
     class="position-relative row w-100 h-100 bg-gradient justify-content-center"
@@ -53,7 +53,7 @@
             <button
               mat-flat-button
               color="primary"
-              class="m-t-15 m-b-15 w-70"
+              class="m-t-5 m-b-15 w-70"
               (click)="getOtp()"
             >
               Get OTP
@@ -92,7 +92,8 @@
     background-size: cover;
     background-position: center;
     min-height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -109,7 +110,7 @@
     .blank-layout-container {
       background-size: cover;
       background-position: center;
-      height: 100vh;
+      min-height: 100vh; /* Ensures background image covers full screen */
     }
 
     mat-card {
@@ -129,7 +130,7 @@
     .blank-layout-container {
       background-size: cover;
       background-position: center;
-      height: 100vh;
+      min-height: 100vh;
     }
 
     .boxed-auth {
@@ -141,5 +142,6 @@
     }
   }
 </style>
+
 
 
