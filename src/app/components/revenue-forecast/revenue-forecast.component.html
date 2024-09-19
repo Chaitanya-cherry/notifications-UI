@@ -1,55 +1,12 @@
-<mat-card class="cardWithShadow">
+<!-- Outer block with light blue background -->
+<mat-card class="cardWithShadow" style="background-color: #9ecaea; padding: 16px; border-radius: 8px;">
   <mat-card-content>
-    <div class="hstack align-items-center flex-column flex-lg-row">
+    
+    <!-- Day sales panel with light green background -->
+    <div class="hstack align-items-center flex-column flex-lg-row" style="background-color: #C8E6C9; padding: 16px; border-radius: 8px;">
       <div class="w-100">
-        <mat-card-title>Revenue Forecast</mat-card-title>
+        <mat-card-title style="color: #0D47A1; font-size: 1.5em; font-weight: bold;">Day sales</mat-card-title>
       </div>
-      <div class="m-l-auto">
-        <mat-form-field class="theme-select" appearance="outline">
-          <mat-select value="mar">
-            <mat-option *ngFor="let month of months" [value]="month.value">
-              {{ month.viewValue }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-    </div>
-
-    <!-- Display panel with location day balances -->
-    <div class="m-t-16 display-panel">
-      <div class="location-balance">
-        <div class="location">
-          <strong>Hyderabad:</strong>
-        </div>
-        <div class="balance">
-          {{ dayBalance.hyderabad | currency }}
-        </div>
-      </div>
-      <div class="location-balance">
-        <div class="location">
-          <strong>Vijayawada:</strong>
-        </div>
-        <div class="balance">
-          {{ dayBalance.vijayawada | currency }}
-        </div>
-      </div>
-      <div class="location-balance">
-        <div class="location">
-          <strong>Bheemavaram:</strong>
-        </div>
-        <div class="balance">
-          {{ dayBalance.bheemavaram | currency }}
-        </div>
-      </div>
-      <div class="location-balance">
-        <div class="location">
-          <strong>Kranti:</strong>
-        </div>
-        <div class="balance">
-          {{ dayBalance.kranti | currency }}
-        </div>
-      </div>
-
       <!-- Calendar button to select the day -->
       <div class="calendar-button m-t-16">
         <mat-form-field appearance="outline">
@@ -59,5 +16,44 @@
         </mat-form-field>
       </div>
     </div>
+
+    <!-- Display panel with location day balances, with light orange background -->
+    <div class="m-t-16 display-panel" style="background-color: #FFE0B2; padding: 16px; border-radius: 8px;">
+      <div class="location-balance" style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+        <div class="location" style="font-weight: bold; font-size: 1.1em;">
+          Hyderabad:
+        </div>
+        <div class="balance" style="text-align: right;">
+          {{ dayBalance.hyderabad | currency }}
+        </div>
+      </div>
+      <div class="location-balance" style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+        <div class="location" style="font-weight: bold; font-size: 1.1em;">
+          Vijayawada:
+        </div>
+        <div class="balance" style="text-align: right;">
+          {{ dayBalance.vijayawada | currency }}
+        </div>
+      </div>
+      <div class="location-balance" style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+        <div class="location" style="font-weight: bold; font-size: 1.1em;">
+          Bheemavaram:
+        </div>
+        <div class="balance" style="text-align: right;">
+          {{ dayBalance.bheemavaram | currency }}
+        </div>
+      </div>
+      <div class="location-balance" style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+        <div class="location" style="font-weight: bold; font-size: 1.1em;">
+          Kranti:
+        </div>
+        <div class="balance" style="text-align: right;">
+          {{ dayBalance.kranti | currency }}
+        </div>
+      </div>
+    </div>
+
   </mat-card-content>
 </mat-card>
+
+
