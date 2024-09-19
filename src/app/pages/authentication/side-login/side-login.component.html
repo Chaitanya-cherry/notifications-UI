@@ -1,12 +1,17 @@
 <div
   class="blank-layout-container justify-content-center align-items-center bg-light"
-  style="background-image: url('./assets/images/backgrounds/login-bg.jpg'); background-size: cover; background-position: center; height: 100vh;"
+  style="background-image: url('./assets/images/backgrounds/login-bg4.jpg'); background-size: cover; background-position: center; height: 100vh; display: flex; justify-content: center; align-items: center;"
 >
   <div
     class="position-relative row w-100 h-100 bg-gradient justify-content-center"
+    style="flex-grow: 1;"
   >
-    <div class="col-lg-4 d-flex align-items-center">
-      <mat-card class="cardWithShadow boxed-auth">
+    <div class="col-lg-4 col-md-6 col-10 d-flex align-items-center">
+      <!-- Added style for transparency -->
+      <mat-card
+        class="cardWithShadow boxed-auth"
+        style="background-color: rgba(255, 255, 255, 0.7);"
+      >
         <mat-card-content class="p-32">
           <div class="text-center">
             <a [routerLink]="['/dashboard']">
@@ -36,16 +41,34 @@
             <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">
               Username / Email ID
             </mat-label>
-            <mat-form-field appearance="outline" class="w-100" color="primary">
-              <input matInput />
+            <mat-form-field
+              appearance="outline"
+              class="w-100 custom-form-field"
+              color="primary"
+            >
+              <input matInput formControlName="uname" />
             </mat-form-field>
 
-            <!-- Password / OTP -->
+            <!-- Get OTP Button -->
+            <button
+              mat-flat-button
+              color="primary"
+              class="m-t-15 m-b-15 w-70"
+              (click)="getOtp()"
+            >
+              Get OTP
+            </button>
+
+            <!-- Enter OTP Field -->
             <mat-label class="mat-subtitle-2 f-s-14 f-w-600 m-b-12 d-block">
-              Password / OTP
+              Enter OTP
             </mat-label>
-            <mat-form-field appearance="outline" class="w-100" color="primary">
-              <input matInput type="password" />
+            <mat-form-field
+              appearance="outline"
+              class="w-100 custom-form-field"
+              color="primary"
+            >
+              <input matInput type="text" formControlName="otp" />
             </mat-form-field>
 
             <div class="d-flex align-items-center m-b-12">
@@ -61,4 +84,62 @@
     </div>
   </div>
 </div>
+
+<!-- Embedded CSS for mobile responsiveness and full background -->
+<style>
+  /* Universal styles for both desktop and mobile */
+  .blank-layout-container {
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Ensure the background image covers the whole area */
+  .row {
+    height: 100%;
+    width: 100%;
+  }
+
+  /* Styles for mobile view */
+  @media (max-width: 768px) {
+    .blank-layout-container {
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+    }
+
+    mat-card {
+      width: 100%;
+    }
+
+    .boxed-auth {
+      padding: 20px;
+    }
+
+    .text-center img {
+      width: 150px; /* Resize logo for mobile */
+    }
+  }
+
+  @media (max-width: 576px) {
+    .blank-layout-container {
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+    }
+
+    .boxed-auth {
+      background-color: rgba(255, 255, 255, 0.85); /* Slightly more opacity on smaller screens for readability */
+    }
+
+    .text-center img {
+      width: 120px; /* Further resize logo for smaller devices */
+    }
+  }
+</style>
+
 

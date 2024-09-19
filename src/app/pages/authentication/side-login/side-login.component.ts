@@ -27,15 +27,20 @@ export class AppSideLoginComponent {
 
   form = new FormGroup({
     uname: new FormControl('', [Validators.required, Validators.minLength(6)]),
-    password: new FormControl('', [Validators.required]),
+    otp: new FormControl('', [Validators.required]),
   });
 
   get f() {
     return this.form.controls;
   }
 
+  getOtp() {
+    console.log('Get OTP button clicked');
+  }
+
   submit() {
-    // console.log(this.form.value);
     this.router.navigate(['/']);
   }
 }
+
+
